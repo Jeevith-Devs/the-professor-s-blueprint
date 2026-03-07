@@ -10,6 +10,7 @@ const AmbientEffects = () => {
   const lastBurstRef = useRef(0);
   const sideIndexRef = useRef(0);
   const sideRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const prizesInViewRef = useRef(false);
 
   const moneyPieces = useMemo(
     () =>
@@ -96,6 +97,8 @@ const AmbientEffects = () => {
             layerRef.current.style.transform = `translate3d(0, ${y}px, 0)`;
           }
 
+          if (!prizesInViewRef.current) return;
+
           const now = performance.now();
           if (now - lastBurstRef.current > 140) {
             lastBurstRef.current = now;
@@ -105,9 +108,30 @@ const AmbientEffects = () => {
       }
     };
 
+    const prizesSection = document.getElementById("prizes");
+    let observer: IntersectionObserver | null = null;
+    if (prizesSection) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          prizesInViewRef.current = entry.isIntersecting;
+          if (entry.isIntersecting) {
+            emitBurst();
+          }
+        },
+        {
+          threshold: 0.25,
+          rootMargin: "0px 0px -10% 0px",
+        }
+      );
+      observer.observe(prizesSection);
+    }
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
+      if (observer) {
+        observer.disconnect();
+      }
       if (scrollRafRef.current != null) {
         window.cancelAnimationFrame(scrollRafRef.current);
       }
