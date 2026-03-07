@@ -8,8 +8,9 @@ const AmbientEffects = () => {
   const scrollYRef = useRef(0);
   const scrollRafRef = useRef<number | null>(null);
   const lastBurstRef = useRef(0);
-  const sideIndexRef = useRef(0);
-  const sideRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const sideIndexRef = useRef({ left: 0, right: 0 });
+  const leftSideRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const rightSideRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const prizesInViewRef = useRef(false);
 
   const moneyPieces = useMemo(
@@ -58,9 +59,10 @@ const AmbientEffects = () => {
     if (!enabled) return;
 
     const triggerSide = (side: "left" | "right") => {
-      const idx = sideIndexRef.current % SIDE_BURST_POOL;
-      sideIndexRef.current += 1;
-      const el = sideRefs.current[idx];
+      const refs = side === "left" ? leftSideRefs.current : rightSideRefs.current;
+      const idx = sideIndexRef.current[side] % SIDE_BURST_POOL;
+      sideIndexRef.current[side] += 1;
+      const el = refs[idx];
       if (!el) return;
 
       const top = `${12 + Math.random() * 58}%`;
@@ -68,7 +70,6 @@ const AmbientEffects = () => {
       const duration = `${1.3 + Math.random() * 0.8}s`;
       const scale = `${0.82 + Math.random() * 0.42}`;
 
-      el.className = `side-money ${side === "left" ? "side-money-left" : "side-money-right"}`;
       el.style.top = top;
       el.style.animationDelay = delay;
       el.style.animationDuration = duration;
@@ -180,11 +181,22 @@ const AmbientEffects = () => {
       <div className="absolute inset-0">
         {sidePool.map((id) => (
           <span
-            key={id}
+            key={`left-${id}`}
             ref={(el) => {
-              sideRefs.current[id] = el;
+              leftSideRefs.current[id] = el;
             }}
             className="side-money side-money-left"
+          />
+        ))}
+      </div>
+      <div className="absolute inset-0">
+        {sidePool.map((id) => (
+          <span
+            key={`right-${id}`}
+            ref={(el) => {
+              rightSideRefs.current[id] = el;
+            }}
+            className="side-money side-money-right"
           />
         ))}
       </div>
