@@ -248,14 +248,15 @@
 .money-piece {
   position: absolute;
   top: -12vh;
-  width: 24px;
-  height: 12px;
+  width: 20px;
+  height: 10px;
   border: 1px solid hsl(var(--heist-gold) / 0.35);
   background: linear-gradient(120deg, hsl(var(--heist-gold) / 0.2), transparent 65%);
-  box-shadow: 0 0 10px hsl(var(--heist-gold) / 0.12);
+  box-shadow: 0 0 8px hsl(var(--heist-gold) / 0.1);
   animation-name: moneyFall;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  will-change: transform, opacity;
 }
 
 .money-piece::after {
@@ -275,6 +276,7 @@
   animation-name: shotTrace;
   animation-iteration-count: infinite;
   animation-timing-function: ease-out;
+  will-change: transform, opacity;
 }
 
 .muzzle-flash {
@@ -284,6 +286,7 @@
   border-radius: 999px;
   background: radial-gradient(circle, hsl(var(--heist-gold) / 0.28) 0%, hsl(var(--heist-red) / 0.1) 35%, transparent 72%);
   animation: muzzleFlash 2.6s infinite ease-in-out;
+  will-change: transform, opacity;
 }
 
 .muzzle-flash-a {
@@ -299,13 +302,14 @@
 
 .side-money {
   position: absolute;
-  width: 22px;
-  height: 11px;
+  width: 20px;
+  height: 10px;
   border: 1px solid hsl(var(--heist-gold) / 0.42);
   background: linear-gradient(120deg, hsl(var(--heist-gold) / 0.22), transparent 68%);
-  box-shadow: 0 0 12px hsl(var(--heist-gold) / 0.15);
+  box-shadow: 0 0 9px hsl(var(--heist-gold) / 0.12);
   animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
   animation-fill-mode: both;
+  will-change: transform, opacity;
 }
 
 .side-money::after {
@@ -353,7 +357,8 @@
   pointer-events: none;
   z-index: 120;
   transform: translate3d(-100px, -100px, 0);
-  transition: width 0.15s ease, height 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 90ms linear, width 0.15s ease, height 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
 }
 
 .atm-card-cursor-pressed {
