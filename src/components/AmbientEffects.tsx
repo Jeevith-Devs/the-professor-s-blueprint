@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
-const SIDE_BURST_POOL = 24;
+const SIDE_BURST_POOL = 120;
 
 const AmbientEffects = () => {
   const [enabled, setEnabled] = useState(false);
@@ -13,25 +13,25 @@ const AmbientEffects = () => {
 
   const moneyPieces = useMemo(
     () =>
-      Array.from({ length: 10 }, (_, i) => ({
+      Array.from({ length: 16 }, (_, i) => ({
         id: i,
-        left: `${6 + i * 8.5}%`,
-        delay: `${(i % 5) * 0.9}s`,
-        duration: `${10 + (i % 3)}s`,
+        left: `${4 + i * 6}%`,
+        delay: `${(i % 7) * 0.9}s`,
+        duration: `${9 + (i % 5)}s`,
         drift: `${(i % 4) - 1.5}`,
-        scale: `${0.78 + (i % 3) * 0.1}`,
+        scale: `${0.75 + (i % 4) * 0.12}`,
       })),
     []
   );
 
   const shotTraces = useMemo(
     () =>
-      Array.from({ length: 4 }, (_, i) => ({
+      Array.from({ length: 6 }, (_, i) => ({
         id: i,
-        top: `${14 + i * 18}%`,
-        delay: `${i * 1.2}s`,
-        duration: `${2.6 + (i % 2) * 0.7}s`,
-        angle: `${-12 + i * 6}deg`,
+        top: `${10 + i * 14}%`,
+        delay: `${i * 1.1}s`,
+        duration: `${2.2 + (i % 3) * 0.6}s`,
+        angle: `${-15 + i * 6}deg`,
       })),
     []
   );
@@ -40,19 +40,16 @@ const AmbientEffects = () => {
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobile = window.matchMedia("(max-width: 767px)");
 
     const sync = () => {
-      setEnabled(!reduced.matches && !mobile.matches);
+      setEnabled(!reduced.matches);
     };
 
     sync();
     reduced.addEventListener("change", sync);
-    mobile.addEventListener("change", sync);
 
     return () => {
       reduced.removeEventListener("change", sync);
-      mobile.removeEventListener("change", sync);
     };
   }, []);
 
@@ -82,7 +79,7 @@ const AmbientEffects = () => {
     };
 
     const emitBurst = () => {
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 5; i++) {
         triggerSide("left");
         triggerSide("right");
       }
@@ -100,7 +97,7 @@ const AmbientEffects = () => {
           }
 
           const now = performance.now();
-          if (now - lastBurstRef.current > 180) {
+          if (now - lastBurstRef.current > 140) {
             lastBurstRef.current = now;
             emitBurst();
           }
@@ -170,6 +167,13 @@ const AmbientEffects = () => {
 
       <span className="muzzle-flash muzzle-flash-a" />
       <span className="muzzle-flash muzzle-flash-b" />
+      <span className="siren-beam siren-red siren-top-left" />
+      <span className="siren-beam siren-blue siren-top-right" />
+      <span className="siren-beam siren-red siren-bottom-right" />
+      <span className="siren-beam siren-blue siren-bottom-left" />
+      <span className="siren-beam siren-yellow siren-mid-left" />
+      <span className="siren-beam siren-red siren-mid-right" />
+      <span className="siren-beam siren-blue siren-center" />
     </div>
   );
 };

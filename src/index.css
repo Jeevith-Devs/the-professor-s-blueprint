@@ -223,6 +223,21 @@
   }
 }
 
+@keyframes sirenSweep {
+  0% {
+    opacity: 0.04;
+    transform: rotate(-16deg) scale(1);
+  }
+  50% {
+    opacity: 0.14;
+    transform: rotate(16deg) scale(1.05);
+  }
+  100% {
+    opacity: 0.04;
+    transform: rotate(-16deg) scale(1);
+  }
+}
+
 .animate-glitch {
   animation: glitch 0.3s ease-in-out infinite;
 }
@@ -431,6 +446,73 @@
   animation: atmDispenseWobble 0.56s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
+.siren-beam {
+  position: absolute;
+  width: 42vw;
+  height: 42vw;
+  border-radius: 999px;
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  animation: sirenSweep 3.6s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.siren-red {
+  background: radial-gradient(circle, hsl(0 88% 56% / 0.32) 0%, hsl(0 88% 56% / 0.16) 30%, transparent 68%);
+}
+
+.siren-blue {
+  background: radial-gradient(circle, hsl(216 92% 62% / 0.3) 0%, hsl(216 92% 62% / 0.14) 30%, transparent 68%);
+}
+
+.siren-yellow {
+  background: radial-gradient(circle, hsl(42 90% 55% / 0.28) 0%, hsl(42 90% 55% / 0.12) 30%, transparent 68%);
+}
+
+.siren-top-left {
+  top: -12vw;
+  left: -12vw;
+}
+
+.siren-top-right {
+  top: -11vw;
+  right: -12vw;
+  animation-delay: 0.9s;
+}
+
+.siren-bottom-right {
+  bottom: -16vw;
+  right: -14vw;
+  animation-delay: 1.7s;
+}
+
+.siren-bottom-left {
+  bottom: -16vw;
+  left: -14vw;
+  animation-delay: 2.4s;
+}
+
+.siren-mid-left {
+  top: 30%;
+  left: -18vw;
+  animation-delay: 1.2s;
+}
+
+.siren-mid-right {
+  top: 34%;
+  right: -18vw;
+  animation-delay: 2s;
+}
+
+.siren-center {
+  top: 18%;
+  left: 30%;
+  width: 34vw;
+  height: 34vw;
+  animation-delay: 2.8s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .atm-card-cursor {
     display: none !important;
@@ -439,6 +521,10 @@
   .atm-slot-scan-open,
   .atm-dispense-note-open {
     animation: none !important;
+  }
+  .siren-beam {
+    animation: none !important;
+    display: none;
   }
   .money-piece,
   .side-money,
