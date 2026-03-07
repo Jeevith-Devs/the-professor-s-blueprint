@@ -65,7 +65,7 @@ const Hero = () => {
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <div className="animate-fade-in-up opacity-0 stagger-1">
           <p className="font-mono text-[10px] md:text-xs tracking-[0.28em] text-muted-foreground/90 mb-3 uppercase">
-            Department of Computer Science and Business Systems Presents
+            Department of CSBS Presents
           </p>
           <p className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-primary mb-6 uppercase">
             // CLASSIFIED - TOP SECRET - EYES ONLY
