@@ -74,20 +74,21 @@ const Navbar = () => {
           aria-label="Toggle navigation menu"
           aria-expanded={mobileMenuOpen}
           onClick={() => setMobileMenuOpen((open) => !open)}
-          className="md:hidden relative inline-flex items-center justify-center h-11 w-11 heist-border bg-card/40 text-primary hover:bg-card/60 active:scale-95 transition-all duration-300"
+          className="md:hidden group relative inline-flex items-center justify-center h-11 w-11 heist-border bg-card/40 text-primary hover:bg-card/60 active:scale-95 transition-all duration-300"
         >
+          <span className={`atm-burger-core ${mobileMenuOpen ? "atm-burger-core-open" : ""}`} />
           <span
-            className={`absolute h-0.5 w-5 bg-primary transition-all duration-300 ${
+            className={`absolute h-0.5 w-5 rounded-full bg-primary transition-all duration-300 ${
               mobileMenuOpen ? "rotate-45 translate-y-0" : "-translate-y-[7px]"
             }`}
           />
           <span
-            className={`absolute h-0.5 w-5 bg-primary transition-all duration-300 ${
+            className={`absolute h-0.5 w-4 rounded-full bg-primary transition-all duration-300 ${
               mobileMenuOpen ? "opacity-0 scale-0" : "opacity-100 scale-100"
             }`}
           />
           <span
-            className={`absolute h-0.5 w-5 bg-primary transition-all duration-300 ${
+            className={`absolute h-0.5 w-5 rounded-full bg-primary transition-all duration-300 ${
               mobileMenuOpen ? "-rotate-45 translate-y-0" : "translate-y-[7px]"
             }`}
           />
@@ -110,27 +111,38 @@ const Navbar = () => {
           mobileMenuOpen ? "max-h-[34rem] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2 pointer-events-none"
         }`}
       >
-        <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
+        <div className="container mx-auto px-6 py-4">
+          <div className="relative mb-4 h-2 w-full rounded-full border border-primary/30 bg-background/80 shadow-[inset_0_0_12px_hsl(var(--heist-red)/0.25)] overflow-hidden">
+            <span className={`atm-slot-scan ${mobileMenuOpen ? "atm-slot-scan-open" : ""}`} />
+          </div>
+          <div className="flex flex-col gap-3">
           {links.map((link, index) => (
-            <a
+            <div
               key={link.label}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className={`font-mono text-xs tracking-widest uppercase transition-all duration-300 ${
-                mobileMenuOpen ? "text-foreground translate-x-0 opacity-100" : "text-muted-foreground -translate-x-3 opacity-0"
-              } hover:text-primary`}
-              style={{ transitionDelay: `${index * 45}ms` }}
+              className="overflow-hidden rounded-sm border border-primary/20 bg-card/40"
             >
-              {link.label}
-            </a>
+              <a
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block px-4 py-3 font-mono text-xs tracking-widest uppercase transition-all duration-500 ${
+                  mobileMenuOpen
+                    ? "text-foreground translate-y-0 opacity-100 atm-dispense-note-open"
+                    : "text-muted-foreground -translate-y-full opacity-0"
+                } hover:text-primary hover:bg-primary/10`}
+                style={{ transitionDelay: `${index * 70}ms`, animationDelay: `${index * 85}ms` }}
+              >
+                {link.label}
+              </a>
+            </div>
           ))}
+          </div>
           <a
             href="#join"
             onClick={() => setMobileMenuOpen(false)}
-            className={`inline-flex justify-center bg-primary text-primary-foreground font-display text-lg px-6 py-2 tracking-wider hover:bg-primary/80 transition-all duration-300 ${
-              mobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+            className={`mt-4 inline-flex justify-center bg-primary text-primary-foreground font-display text-lg px-6 py-3 tracking-wider hover:bg-primary/80 transition-all duration-500 ${
+              mobileMenuOpen ? "translate-y-0 opacity-100 scale-100" : "translate-y-4 opacity-0 scale-95"
             }`}
-            style={{ transitionDelay: "260ms" }}
+            style={{ transitionDelay: "420ms" }}
           >
             REGISTER NOW
           </a>
