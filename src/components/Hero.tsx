@@ -75,17 +75,16 @@ const Hero = () => {
         <div className="animate-fade-in-up opacity-0 stagger-2">
           <BeginStrip focusWord="HEIST" className="mb-6 text-xl md:text-2xl" />
           <h1 className="font-display text-6xl md:text-9xl leading-none tracking-wider text-foreground mb-2">
-            THE GREAT
+            CODE HIVE
           </h1>
           <h1 className="font-display text-7xl md:text-[10rem] leading-none tracking-wider text-primary heist-glow">
-            CODEHIVE 2K26
+            2K26
           </h1>
         </div>
 
         <div className="animate-fade-in-up opacity-0 stagger-3 mt-8">
           <p className="font-mono text-sm text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            March 18, 2026 at 8:00 AM. One mission. Assemble your crew, pick your codename, and hack your way to glory.
-            The Professor has a plan.
+            Code Hive 2K26 begins on March 18, 2026 at 8:00 AM. One mission, one campus, one unforgettable coding showdown.
           </p>
         </div>
 

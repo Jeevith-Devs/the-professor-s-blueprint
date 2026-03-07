@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -10,6 +9,29 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileMenuOpen(false);
+    };
+    const onResize = () => {
+      if (window.innerWidth >= 768) setMobileMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", onEscape);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("keydown", onEscape);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   const links = [
     { label: "MISSION", href: "#mission" },
@@ -23,7 +45,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || mobileMenuOpen
           ? "bg-background/95 backdrop-blur-md border-b border-primary/20"
           : "bg-transparent"
       }`}
@@ -52,9 +74,23 @@ const Navbar = () => {
           aria-label="Toggle navigation menu"
           aria-expanded={mobileMenuOpen}
           onClick={() => setMobileMenuOpen((open) => !open)}
-          className="md:hidden inline-flex items-center justify-center h-10 w-10 heist-border bg-card/40 text-primary hover:bg-card/60 transition-colors"
+          className="md:hidden relative inline-flex items-center justify-center h-11 w-11 heist-border bg-card/40 text-primary hover:bg-card/60 active:scale-95 transition-all duration-300"
         >
-          {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          <span
+            className={`absolute h-0.5 w-5 bg-primary transition-all duration-300 ${
+              mobileMenuOpen ? "rotate-45 translate-y-0" : "-translate-y-[7px]"
+            }`}
+          />
+          <span
+            className={`absolute h-0.5 w-5 bg-primary transition-all duration-300 ${
+              mobileMenuOpen ? "opacity-0 scale-0" : "opacity-100 scale-100"
+            }`}
+          />
+          <span
+            className={`absolute h-0.5 w-5 bg-primary transition-all duration-300 ${
+              mobileMenuOpen ? "-rotate-45 translate-y-0" : "translate-y-[7px]"
+            }`}
+          />
         </button>
         <a
           href="#join"
@@ -63,29 +99,43 @@ const Navbar = () => {
           REGISTER NOW
         </a>
       </div>
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-primary/20 bg-background/95 backdrop-blur-md">
-          <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
-            {links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="font-mono text-xs tracking-widest text-muted-foreground hover:text-primary transition-colors uppercase"
-              >
-                {link.label}
-              </a>
-            ))}
+      <div
+        onClick={() => setMobileMenuOpen(false)}
+        className={`md:hidden fixed inset-0 top-[92px] bg-background/60 backdrop-blur-[2px] transition-opacity duration-300 ${
+          mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      />
+      <div
+        className={`md:hidden overflow-hidden border-t border-primary/20 bg-background/95 backdrop-blur-md transition-all duration-500 ease-out ${
+          mobileMenuOpen ? "max-h-[34rem] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2 pointer-events-none"
+        }`}
+      >
+        <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
+          {links.map((link, index) => (
             <a
-              href="#join"
+              key={link.label}
+              href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex justify-center bg-primary text-primary-foreground font-display text-lg px-6 py-2 tracking-wider hover:bg-primary/80 transition-colors"
+              className={`font-mono text-xs tracking-widest uppercase transition-all duration-300 ${
+                mobileMenuOpen ? "text-foreground translate-x-0 opacity-100" : "text-muted-foreground -translate-x-3 opacity-0"
+              } hover:text-primary`}
+              style={{ transitionDelay: `${index * 45}ms` }}
             >
-              REGISTER NOW
+              {link.label}
             </a>
-          </div>
+          ))}
+          <a
+            href="#join"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`inline-flex justify-center bg-primary text-primary-foreground font-display text-lg px-6 py-2 tracking-wider hover:bg-primary/80 transition-all duration-300 ${
+              mobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+            }`}
+            style={{ transitionDelay: "260ms" }}
+          >
+            REGISTER NOW
+          </a>
         </div>
-      )}
+      </div>
     </nav>
   );
 };
