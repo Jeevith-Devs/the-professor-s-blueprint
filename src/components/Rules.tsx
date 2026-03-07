@@ -1,28 +1,30 @@
+import BeginStrip from "@/components/BeginStrip";
+
 const rules = [
   {
     number: "01",
-    title: "TEAM SIZE",
-    detail: "Each crew consists of 2-4 members. No lone wolves, no armies.",
+    title: "CODE RELAY TEAM SIZE",
+    detail: "Code Relay is strictly a 2-member team event. No individual entries and no teams above 2.",
   },
   {
     number: "02",
-    title: "ORIGINAL WORK",
-    detail: "All code must be written during the 48-hour window. Pre-built libraries allowed.",
+    title: "IDEA FORGE STATUS",
+    detail: "Idea Forge rules and team-size limits are not finalized yet and will be announced later.",
   },
   {
     number: "03",
-    title: "ONE TRACK",
-    detail: "Choose one heist plan and commit. No switching mid-operation.",
+    title: "ORIGINAL WORK",
+    detail: "All solutions must be completed during the live event rounds.",
   },
   {
     number: "04",
-    title: "DEMO REQUIRED",
-    detail: "Every team must present a working demo. The Professor doesn't accept excuses.",
+    title: "ONE TRACK ONLY",
+    detail: "Each team must register for a single event track.",
   },
   {
     number: "05",
     title: "CODE OF CONDUCT",
-    detail: "Respect every crew member. Harassment = immediate disqualification.",
+    detail: "Respect all participants and coordinators. Unfair practices may lead to disqualification.",
   },
 ];
 
@@ -31,6 +33,7 @@ const Rules = () => {
     <section id="rules" className="py-24 heist-gradient relative">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
+          <BeginStrip focusWord="RULES" className="mb-4 text-2xl md:text-3xl" />
           <p className="font-mono text-xs tracking-[0.5em] text-primary mb-4">
             // THE PROFESSOR'S ORDERS
           </p>

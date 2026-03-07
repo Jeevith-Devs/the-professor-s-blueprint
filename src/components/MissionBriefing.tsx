@@ -1,10 +1,11 @@
 import { Shield, Clock, Users, Zap } from "lucide-react";
+import BeginStrip from "@/components/BeginStrip";
 
 const stats = [
-  { icon: Clock, value: "48H", label: "NON-STOP HACKING" },
-  { icon: Users, value: "500+", label: "CREW MEMBERS" },
-  { icon: Shield, value: "₹5L+", label: "IN BOUNTY" },
-  { icon: Zap, value: "10+", label: "HEIST TRACKS" },
+  { icon: Clock, value: "3HRS", label: "NON-STOP HACKING" },
+  { icon: Users, value: "60+", label: "CREW MEMBERS" },
+  { icon: Shield, value: "12K", label: "IN BOUNTY" },
+  { icon: Zap, value: "2", label: "HEIST TRACKS" },
 ];
 
 const MissionBriefing = () => {
@@ -13,6 +14,7 @@ const MissionBriefing = () => {
       <div className="container mx-auto px-6">
         {/* Section header */}
         <div className="text-center mb-16">
+          <BeginStrip focusWord="MISSION" className="mb-4 text-2xl md:text-3xl" />
           <p className="font-mono text-xs tracking-[0.5em] text-primary mb-4">
             // OPERATION BRIEFING
           </p>

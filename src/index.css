@@ -50,9 +50,15 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-mono);
+  }
+  section[id] {
+    scroll-margin-top: 7rem;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
@@ -104,6 +110,76 @@
   50% { box-shadow: 0 0 0 15px hsl(var(--heist-red) / 0); }
 }
 
+@keyframes moneyFall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg) scale(var(--scale));
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate3d(calc(var(--drift) * 42px), 110vh, 0) rotate(360deg) scale(var(--scale));
+    opacity: 0;
+  }
+}
+
+@keyframes shotTrace {
+  0% {
+    transform: translateX(-35vw) rotate(var(--shot-angle));
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateX(140vw) rotate(var(--shot-angle));
+    opacity: 0;
+  }
+}
+
+@keyframes muzzleFlash {
+  0%, 76%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  80% {
+    opacity: 0.2;
+    transform: scale(1.05);
+  }
+  86% {
+    opacity: 0;
+  }
+}
+
+@keyframes sidePourLeft {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(var(--scale));
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translate3d(44vw, 52vh, 0) rotate(300deg) scale(var(--scale));
+    opacity: 0;
+  }
+}
+
+@keyframes sidePourRight {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(var(--scale));
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translate3d(-44vw, 52vh, 0) rotate(-300deg) scale(var(--scale));
+    opacity: 0;
+  }
+}
+
 .animate-glitch {
   animation: glitch 0.3s ease-in-out infinite;
 }
@@ -125,3 +201,93 @@
 .stagger-3 { animation-delay: 0.3s; }
 .stagger-4 { animation-delay: 0.4s; }
 .stagger-5 { animation-delay: 0.5s; }
+
+.money-piece {
+  position: absolute;
+  top: -12vh;
+  width: 24px;
+  height: 12px;
+  border: 1px solid hsl(var(--heist-gold) / 0.35);
+  background: linear-gradient(120deg, hsl(var(--heist-gold) / 0.2), transparent 65%);
+  box-shadow: 0 0 10px hsl(var(--heist-gold) / 0.12);
+  animation-name: moneyFall;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.money-piece::after {
+  content: "";
+  position: absolute;
+  inset: 3px 6px;
+  border: 1px solid hsl(var(--heist-gold) / 0.2);
+}
+
+.shot-trace {
+  position: absolute;
+  left: -30vw;
+  width: 24vw;
+  height: 2px;
+  background: linear-gradient(to right, transparent, hsl(var(--heist-red) / 0.65), transparent);
+  filter: blur(0.3px);
+  animation-name: shotTrace;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-out;
+}
+
+.muzzle-flash {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  background: radial-gradient(circle, hsl(var(--heist-gold) / 0.28) 0%, hsl(var(--heist-red) / 0.1) 35%, transparent 72%);
+  animation: muzzleFlash 2.6s infinite ease-in-out;
+}
+
+.muzzle-flash-a {
+  top: 22%;
+  right: 10%;
+}
+
+.muzzle-flash-b {
+  bottom: 26%;
+  left: 12%;
+  animation-delay: 0.9s;
+}
+
+.side-money {
+  position: absolute;
+  width: 22px;
+  height: 11px;
+  border: 1px solid hsl(var(--heist-gold) / 0.42);
+  background: linear-gradient(120deg, hsl(var(--heist-gold) / 0.22), transparent 68%);
+  box-shadow: 0 0 12px hsl(var(--heist-gold) / 0.15);
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+.side-money::after {
+  content: "";
+  position: absolute;
+  inset: 2px 5px;
+  border: 1px solid hsl(var(--heist-gold) / 0.22);
+}
+
+.side-money-left {
+  left: -4vw;
+  animation-name: sidePourLeft;
+}
+
+.side-money-right {
+  right: -4vw;
+  animation-name: sidePourRight;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .money-piece,
+  .side-money,
+  .shot-trace,
+  .muzzle-flash {
+    animation: none !important;
+    display: none;
+  }
+}

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
+import BeginStrip from "@/components/BeginStrip";
 
 const CountdownTimer = () => {
-  const targetDate = new Date("2026-04-15T00:00:00").getTime();
+  const targetDate = new Date(2026, 2, 18, 8, 0, 0).getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
@@ -17,6 +18,7 @@ const CountdownTimer = () => {
         seconds: Math.floor((diff / 1000) % 60),
       });
     }, 1000);
+
     return () => clearInterval(interval);
   }, [targetDate]);
 
@@ -28,7 +30,7 @@ const CountdownTimer = () => {
   ];
 
   return (
-    <div className="flex gap-4 md:gap-6">
+    <div className="flex justify-center gap-4 md:gap-6">
       {units.map((unit) => (
         <div key={unit.label} className="text-center">
           <div className="font-display text-4xl md:text-6xl text-primary heist-glow">
@@ -45,42 +47,45 @@ const CountdownTimer = () => {
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-28">
       <div className="absolute inset-0">
         <img src={heroBg} alt="" className="w-full h-full object-cover opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
       </div>
 
-      {/* Scanline overlay */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
-          backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(0 0% 100% / 0.05) 2px, hsl(0 0% 100% / 0.05) 4px)",
+          backgroundImage:
+            "repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(0 0% 100% / 0.05) 2px, hsl(0 0% 100% / 0.05) 4px)",
         }}
       />
 
-      {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <div className="animate-fade-in-up opacity-0 stagger-1">
-          <p className="font-mono text-xs tracking-[0.5em] text-primary mb-6 uppercase">
-            // CLASSIFIED — TOP SECRET — EYES ONLY
+          <p className="font-mono text-[10px] md:text-xs tracking-[0.28em] text-muted-foreground/90 mb-3 uppercase">
+            Department of Computer Science and Business Systems Presents
+          </p>
+          <p className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-primary mb-6 uppercase">
+            // CLASSIFIED - TOP SECRET - EYES ONLY
           </p>
         </div>
 
         <div className="animate-fade-in-up opacity-0 stagger-2">
+          <BeginStrip focusWord="HEIST" className="mb-6 text-xl md:text-2xl" />
           <h1 className="font-display text-6xl md:text-9xl leading-none tracking-wider text-foreground mb-2">
             THE GREAT
           </h1>
           <h1 className="font-display text-7xl md:text-[10rem] leading-none tracking-wider text-primary heist-glow">
-            HEIST HACK
+            CODEHIVE 2K26
           </h1>
         </div>
 
         <div className="animate-fade-in-up opacity-0 stagger-3 mt-8">
           <p className="font-mono text-sm text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            48 hours. One mission. Assemble your crew, pick your codename, 
-            and hack your way to glory. The Professor has a plan.
+            March 18, 2026 at 8:00 AM. One mission. Assemble your crew, pick your codename, and hack your way to glory.
+            The Professor has a plan.
           </p>
         </div>
 
@@ -93,13 +98,13 @@ const Hero = () => {
             href="#join"
             className="bg-primary text-primary-foreground font-display text-2xl px-10 py-4 tracking-widest hover:bg-primary/80 transition-all animate-pulse-red"
           >
-            JOIN THE HEIST
+            JOIN CODEHIVE 2K26
           </a>
           <a
             href="#mission"
             className="heist-border text-foreground font-display text-2xl px-10 py-4 tracking-widest hover:bg-primary/10 transition-all"
           >
-            THE PLAN ↓
+            THE PLAN -&gt;
           </a>
         </div>
       </div>
