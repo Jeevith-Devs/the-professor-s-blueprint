@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ArrowLeft, Clock3, FileCode2, ListChecks, Lightbulb, ShieldAlert, Users } from "lucide-react";
+import { ArrowLeft, Clock3, Download, FileCode2, ListChecks, Lightbulb, ShieldAlert, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import BeginStrip from "@/components/BeginStrip";
 
@@ -53,6 +53,14 @@ const ReverseGearRules = () => {
             ReverseGear Round 1 focuses on reverse analysis of a Java OOP codebase. Participants must interpret
             behavior, detect design flaws, map OOP violations, and propose better architecture.
           </p>
+          <a
+            href="/files/Reverse_Hackathon_Round1_Java_With_Answers.pdf"
+            download="Reverse_Hackathon_Round1_Java_With_Answers.pdf"
+            className="inline-flex items-center gap-2 mt-6 heist-border px-4 py-2 font-mono text-xs tracking-[0.2em] text-primary hover:bg-primary/10 transition-colors"
+          >
+            <Download className="w-4 h-4" />
+            DOWNLOAD RULES PDF
+          </a>
 
           <div className="grid sm:grid-cols-3 gap-4 mt-8">
             <div className="heist-border p-4 bg-background/40">

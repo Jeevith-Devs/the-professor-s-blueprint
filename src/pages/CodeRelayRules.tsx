@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ArrowLeft, Clock3, Users, FileCode2, ShieldAlert } from "lucide-react";
+import { ArrowLeft, Clock3, Download, Users, FileCode2, ShieldAlert } from "lucide-react";
 import { Link } from "react-router-dom";
 import BeginStrip from "@/components/BeginStrip";
 
@@ -58,11 +58,19 @@ const CodeRelayRules = () => {
           <BeginStrip focusWord="RELAY" className="mb-4 text-2xl md:text-3xl" />
           <p className="font-mono text-xs tracking-[0.4em] text-primary mb-4">// EVENT DOSSIER</p>
           <h1 className="font-display text-5xl md:text-7xl text-foreground tracking-wider leading-none">
-            CODE RELAY HEIST
+            CODE RELAY
           </h1>
           <p className="font-mono text-sm md:text-base text-muted-foreground mt-4 max-w-3xl leading-relaxed">
             Crack the Code. Pass the Relay. Win the Heist. The competition consists of 3 rounds that test coding ability, speed, teamwork, and coordination.
           </p>
+          <a
+            href="/files/CodeRelayRules.pdf"
+            download="CodeRelayRules.pdf"
+            className="inline-flex items-center gap-2 mt-6 heist-border px-4 py-2 font-mono text-xs tracking-[0.2em] text-primary hover:bg-primary/10 transition-colors"
+          >
+            <Download className="w-4 h-4" />
+            DOWNLOAD RULES PDF
+          </a>
 
           <div className="grid sm:grid-cols-3 gap-4 mt-8">
             <div className="heist-border p-4 bg-background/40">
