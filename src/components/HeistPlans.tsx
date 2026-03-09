@@ -1,4 +1,4 @@
-import { Brain, Paintbrush } from "lucide-react";
+import { Brain, Cog } from "lucide-react";
 import { Link } from "react-router-dom";
 import BeginStrip from "@/components/BeginStrip";
 
@@ -11,11 +11,11 @@ const tracks = [
     href: "/code-relay-rules",
   },
   {
-    icon: Paintbrush,
+    icon: Cog,
     codename: "NAIROBI",
-    title: "CYPHER VERSE",
-    description: "Crack the code. Pass the relay. Win the heist. The competition consists of 3 rounds that test coding ability, speed, teamwork, and coordination.",
-    href: "/cypher-verse-rules",
+    title: "REVERSE GEAR",
+    description: "Reverse-engineer Java OOP code, diagnose design flaws, and propose clean refactors under timed pressure.",
+    href: "/reversegear-rules",
   },
 ];
 

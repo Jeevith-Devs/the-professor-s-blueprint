@@ -7,6 +7,7 @@ import AtmCardCursor from "@/components/AtmCardCursor";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CodeRelayRules from "./pages/CodeRelayRules";
+import ReverseGearRules from "./pages/ReverseGearRules";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/code-relay-rules" element={<CodeRelayRules />} />
+          <Route path="/reversegear-rules" element={<ReverseGearRules />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
