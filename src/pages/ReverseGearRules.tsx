@@ -54,8 +54,8 @@ const ReverseGearRules = () => {
             behavior, detect design flaws, map OOP violations, and propose better architecture.
           </p>
           <a
-            href="/files/Reverse_Hackathon_Round1_Java_With_Answers.pdf"
-            download="Reverse_Hackathon_Round1_Java_With_Answers.pdf"
+            href="/files/ReverseGearRules.pdf"
+            download="ReverseGearRules.pdf"
             className="inline-flex items-center gap-2 mt-6 heist-border px-4 py-2 font-mono text-xs tracking-[0.2em] text-primary hover:bg-primary/10 transition-colors"
           >
             <Download className="w-4 h-4" />

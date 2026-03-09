@@ -2,9 +2,9 @@ import { Trophy, Medal, Award } from "lucide-react";
 import BeginStrip from "@/components/BeginStrip";
 
 const prizes = [
-  { icon: Trophy, title: "1ST PRIZE", amount: "₹3000" },
-  { icon: Medal, title: "2ND PRIZE", amount: "₹2000" },
-  { icon: Award, title: "3RD PRIZE", amount: "₹1000" },
+  { icon: Trophy, title: "1ST PRIZE", amount: "Rs.3000" },
+  { icon: Medal, title: "2ND PRIZE", amount: "Rs.2000" },
+  { icon: Award, title: "3RD PRIZE", amount: "Rs.1000" },
 ];
 
 const Prizes = () => {
@@ -36,7 +36,14 @@ const Prizes = () => {
 
           <div className="mt-6 heist-border bg-primary/10 px-4 md:px-6 py-4 flex items-center justify-between">
             <p className="font-display text-3xl md:text-4xl tracking-wider text-foreground">TOTAL PRIZE POOL</p>
-            <p className="font-display text-4xl md:text-5xl tracking-wider text-primary">₹12000</p>
+            <p className="font-display text-4xl md:text-5xl tracking-wider text-primary">Rs.12000</p>
+          </div>
+
+          <div className="mt-4 heist-border bg-background/45 px-4 md:px-6 py-4">
+            <p className="font-display text-2xl md:text-3xl tracking-wider text-foreground">CERTIFICATES</p>
+            <p className="font-mono text-xs md:text-sm text-muted-foreground mt-1">
+              Participation certificates will be provided to all participants.
+            </p>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MapPin, CalendarClock, Navigation } from "lucide-react";
 import BeginStrip from "@/components/BeginStrip";
 
@@ -5,8 +6,24 @@ const venueName = "Palani Murugan Hall of Fame";
 const venueAddress = "Vel Tech Multi Tech Dr.Rangarajan Dr.Sakunthala Engineering College (Autonomous), Avadi, Chennai";
 const mapQuery = "Palani Murugan Hall of Fame Vel Tech Multi Tech Dr.Rangarajan Dr.Sakunthala Engineering College Chennai";
 const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
+const coordinators = [
+  { name: "Sandeep R", phoneLabel: "+91 6369519310", phoneRaw: "6369519310" },
+  { name: "Ben Sharon J", phoneLabel: "+91 9940364941", phoneRaw: "9940364941" },
+];
 
 const LocationSection = () => {
+  const [copiedPhone, setCopiedPhone] = useState<string | null>(null);
+
+  const copyPhone = async (phone: string) => {
+    try {
+      await navigator.clipboard.writeText(phone);
+      setCopiedPhone(phone);
+      window.setTimeout(() => setCopiedPhone((current) => (current === phone ? null : current)), 1500);
+    } catch {
+      setCopiedPhone(null);
+    }
+  };
+
   return (
     <section id="location" className="py-24 heist-gradient relative">
       <div className="container mx-auto px-6">
@@ -49,14 +66,22 @@ const LocationSection = () => {
             <div className="mt-8 heist-border bg-background/40 p-4 md:p-5">
               <p className="font-display text-3xl tracking-wider text-heist-gold mb-3">EVENT COORDINATORS</p>
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="heist-border bg-card/30 p-4">
-                  <p className="font-display text-3xl text-foreground tracking-wider">Sandeep R</p>
-                  <p className="font-mono text-sm text-primary mt-1">Ph: +91 6369519310</p>
-                </div>
-                <div className="heist-border bg-card/30 p-4">
-                  <p className="font-display text-3xl text-foreground tracking-wider">Ben Sharon J</p>
-                  <p className="font-mono text-sm text-primary mt-1">Ph: +91 9940364941</p>
-                </div>
+                {coordinators.map((coordinator) => (
+                  <button
+                    key={coordinator.phoneRaw}
+                    type="button"
+                    onClick={() => copyPhone(coordinator.phoneRaw)}
+                    className="heist-border bg-card/30 p-4 text-left hover:bg-card/50 transition-colors"
+                    aria-label={`Copy ${coordinator.name} phone number`}
+                    title="Click to copy phone number"
+                  >
+                    <p className="font-display text-3xl text-foreground tracking-wider">{coordinator.name}</p>
+                    <p className="font-mono text-sm text-primary mt-1">Ph: {coordinator.phoneLabel}</p>
+                    <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground mt-2 uppercase">
+                      {copiedPhone === coordinator.phoneRaw ? "Copied" : "Click to copy"}
+                    </p>
+                  </button>
+                ))}
               </div>
             </div>
           </div>

@@ -8,8 +8,8 @@ const rules = [
   },
   {
     number: "02",
-    title: "IDEA FORGE STATUS",
-    detail: "Idea Forge rules and team-size limits are not finalized yet and will be announced later.",
+    title: "REVERSE GEAR RULES",
+    detail: "Reverse Gear is a 2-member event focused on Java OOP code analysis, flaw identification, and structured refactor recommendations.",
   },
   {
     number: "03",
