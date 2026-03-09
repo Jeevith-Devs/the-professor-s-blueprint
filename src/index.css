@@ -357,62 +357,6 @@
   }
 }
 
-.atm-card-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 58px;
-  height: 36px;
-  border: 1px solid hsl(var(--heist-gold) / 0.6);
-  border-radius: 6px;
-  background:
-    linear-gradient(135deg, hsl(var(--heist-red) / 0.75), hsl(var(--heist-dark) / 0.95) 60%),
-    repeating-linear-gradient(0deg, transparent, transparent 5px, hsl(var(--heist-gold) / 0.06) 6px);
-  box-shadow: 0 0 20px hsl(var(--heist-red) / 0.35), inset 0 0 14px hsl(var(--heist-gold) / 0.1);
-  pointer-events: none;
-  z-index: 120;
-  transform: translate3d(-100px, -100px, 0);
-  transition: transform 90ms linear, width 0.15s ease, height 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  will-change: transform;
-}
-
-.atm-card-cursor-pressed {
-  width: 54px;
-  height: 34px;
-  border-color: hsl(var(--heist-gold) / 0.95);
-  box-shadow: 0 0 26px hsl(var(--heist-gold) / 0.45), inset 0 0 16px hsl(var(--heist-gold) / 0.2);
-}
-
-.atm-card-chip {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 12px;
-  height: 9px;
-  border: 1px solid hsl(var(--heist-gold) / 0.75);
-  border-radius: 2px;
-  background: hsl(var(--heist-gold) / 0.25);
-}
-
-.atm-card-strip {
-  position: absolute;
-  top: 8px;
-  right: 7px;
-  width: 20px;
-  height: 4px;
-  background: hsl(var(--heist-gold) / 0.45);
-  border-radius: 999px;
-}
-
-.atm-card-dot {
-  position: absolute;
-  bottom: 8px;
-  right: 10px;
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: hsl(var(--heist-gold) / 0.9);
-}
 
 .atm-burger-core {
   position: absolute;
@@ -514,9 +458,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .atm-card-cursor {
-    display: none !important;
-  }
   .atm-burger-core-open,
   .atm-slot-scan-open,
   .atm-dispense-note-open {

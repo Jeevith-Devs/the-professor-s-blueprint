@@ -13,8 +13,9 @@ const tracks = [
   {
     icon: Paintbrush,
     codename: "NAIROBI",
-    title: "IDEA FORGE",
-    description: "Pitch bold product ideas with clarity and impact. The strongest concept takes the lead.",
+    title: "CYPHER VERSE",
+    description: "Crack the code. Pass the relay. Win the heist. The competition consists of 3 rounds that test coding ability, speed, teamwork, and coordination.",
+    href: "/cypher-verse-rules",
   },
 ];
 
