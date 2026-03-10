@@ -31,10 +31,10 @@ const MissionBriefing = () => {
               CLASSIFIED DOCUMENT #001
             </p>
             <p className="font-mono text-sm text-foreground/80 leading-relaxed">
-              The Professor has devised the ultimate plan. This isn't just another hackathon — 
-              it's a coordinated operation. Your team of 2-4 operatives will infiltrate one of 
-              our designated tracks, build something extraordinary in 3 hours, and present your 
-              creation to the panel of judges. The best crews walk away with glory, prizes, and 
+              The Professor has devised the ultimate plan. This isn't just another hackathon —
+              it's a coordinated operation. Your team of 2 operatives will infiltrate one of
+              our designated tracks, build something extraordinary in 3 hours, and present your
+              creation to the panel of judges. The best crews walk away with glory, prizes, and
               the respect of the underground.
             </p>
             <p className="font-mono text-sm text-foreground/80 leading-relaxed mt-4">

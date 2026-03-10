@@ -16,11 +16,11 @@ const Index = () => {
       <AmbientEffects />
       <Hero />
       <MissionBriefing />
-      <Prizes />
-      <LocationSection />
       <HeistPlans />
+      <Prizes />
       <Rules />
       <JoinCrew />
+      <LocationSection />
       <Footer />
     </div>
   );
